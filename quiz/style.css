@@ -20,7 +20,7 @@ body {
   font-family: sans-serif;
 }
 
-/*Navbar Start*/
+/* nav start */
 
 .menu-backdrop {
   position: fixed;
@@ -28,17 +28,12 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* Noir très profond avec opacité 90% */
   background-color: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
-  /* On le cache par défaut */
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-
-  /* Devant tout le contenu, mais DERRIÈRE la nav */
   z-index: 9999;
 }
 
@@ -239,7 +234,7 @@ nav {
   }
 }
 
-/*Navbar End*/
+/* nav end */
 
 .container {
   background: #202020;
