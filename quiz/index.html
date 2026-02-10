@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="screen active" id="start-screen">
+        <h1>C'est l'heure du Quiz !</h1>
+        <p>Teste ta culture générale</p>
+        <button id="start-btn">Commencer Maintenant !</button>
+      </div>
+
+      <div class="screen" id="quiz-screen">
+        <div class="quiz-header">
+          <h2 id="question-text">Question</h2>
+          <div class="quiz-info">
+            <p>
+              Question <span id="current-question">0</span> sur
+              <span id="total-questions">5</span>
+            </p>
+            <p>Score : <span id="score">0</span></p>
+          </div>
+        </div>
+        <div id="answers-container" class="answers-container"></div>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+
+      <div id="result-screen" class="screen">
+        <h1>Résultats</h1>
+        <div class="result-info">
+          <p>
+            Tu as <span id="final-score">0</span> réponses justes sur
+            <span id="max-score">5</span>
+          </p>
+          <div id="result-message">Bien Joué !</div>
+        </div>
+        <button id="restart-btn">Recommencer</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
