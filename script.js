@@ -1,3 +1,4 @@
+// nav start
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 const menuBackdrop = document.querySelector(".menu-backdrop");
@@ -23,3 +24,4 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
     menuBackdrop.classList.remove("active");
   });
 });
+// nav end
