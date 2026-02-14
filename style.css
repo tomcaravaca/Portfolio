@@ -861,15 +861,14 @@ p {
     font-size: 12px;
     letter-spacing: 0;
     line-height: 1.6;
-    text-align: justify;
   }
 
   .intro {
-    height: 14vh;
+    height: 20vh;
   }
 
   .container-intro {
-    height: 25vh;
+    height: 30vh;
   }
 
   .sitegite h1::after {
