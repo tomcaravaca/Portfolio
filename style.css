@@ -4,9 +4,15 @@
   box-sizing: border-box;
 }
 
+html {
+  background: linear-gradient(-180deg, #050505, #161616, rgb(40, 15, 0));
+  background-attachment: fixed;
+  min-height: 100%;
+}
+
 body {
   font-family: sans-serif;
-  background: linear-gradient(-180deg, #050505, #161616, rgb(40, 15, 0));
+  background: transparent;
   min-height: 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
