@@ -1,3 +1,16 @@
+// Écran de chargement
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+
+  setTimeout(() => {
+    loader.classList.add("hidden");
+
+    setTimeout(() => {
+      loader.remove();
+    }, 500);
+  }, 1000);
+});
+
 // charger la navbar
 fetch("navbar/navbar-root.html")
   .then((response) => response.text())
@@ -29,4 +42,4 @@ fetch("navbar/navbar-root.html")
       });
     });
   });
-  // navbar fin
+// navbar fin

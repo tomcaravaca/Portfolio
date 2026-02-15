@@ -4,18 +4,108 @@
   box-sizing: border-box;
 }
 
-html {
-  background: linear-gradient(-180deg, #050505, #161616, rgb(40, 15, 0));
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  width: 100%;
+  height: 100%;
+  --color: rgba(76, 76, 76, 0.3);
+  background-color: #0c0c0c;
+  background-image:
+    linear-gradient(
+      -180deg,
+      rgba(5, 5, 5, 0.5),
+      rgba(22, 22, 22, 0.5),
+      rgba(61, 23, 0, 0.5)
+    ),
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size:
+    100% 100%,
+    40px 40px,
+    40px 40px;
   background-attachment: fixed;
-  min-height: 100%;
 }
 
-body {
-  font-family: sans-serif;
-  background: transparent;
-  min-height: 100vh;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+/* Écran de chargement */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0c0c0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+/* Spinner animé */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.loading-text .logo2 {
+  color: #8e8e8e;
 }
 
 a {
@@ -102,7 +192,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 3px 1px rgba(255, 255, 255, 0.065);
   align-items: center;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.07);
@@ -143,6 +235,8 @@ a {
   margin: 40px auto 0;
   width: 90%;
   border-radius: 15px;
+  box-shadow: 0px 0 20px 1px rgba(255, 255, 255, 0.38);
+  border: 1.5px solid rgba(255, 255, 255, 0.485);
 }
 
 .btn-sitegite {
