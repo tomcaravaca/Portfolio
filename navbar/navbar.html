@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="menu-backdrop"></div>
+    <nav>
+      <div class="navbar">
+        <div class="logo">
+          <a href="../index.html" class="logo2">&lt;</a
+          ><a class="logo" href="../index.html">Tom.Code /</a
+          ><a href="../index.html" class="logo2">&gt;</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="/index.html#projets">Projets</a></li>
+          <li><a href="/index.html#contact">Contact</a></li>
+          <li><a href="/index.html#about">À propos</a></li>
+        </ul>
+
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <style>
+      .menu-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 9999;
+      }
+
+      .menu-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 2rem;
+        z-index: 10000;
+      }
+
+      .navbar {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .navbar:hover {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        letter-spacing: -0.5px;
+        cursor: pointer;
+      }
+
+      .logo:hover {
+        transform: scale(1.1);
+      }
+
+      .logo2 {
+        color: #8e8e8e;
+      }
+
+      .tomcode {
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        position: relative;
+        transition: all 0.3s ease;
+        letter-spacing: -0.2px;
+        display: inline-block;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -8px;
+        left: 0;
+        background: #ffffff;
+        transition: all 0.5s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-links a:hover {
+        transform: scale(1.1) translateY(-2px);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 2px;
+        background: white;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translateX(8px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        transform: translateZ(-10px);
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translateX(8px);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          left: 0;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          flex-direction: column;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 18px;
+          margin-top: 1rem;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition: all 0.5s cubic-bezier(0.5, 0, 0.2, 1);
+          z-index: 1000;
+          display: flex;
+          gap: 10px;
+        }
+
+        .nav-links.active {
+          max-height: 500px;
+          opacity: 1;
+          padding: 1.5rem;
+        }
+
+        .nav-links li {
+          width: 100%;
+          opacity: 0;
+          transform: translateY(-50px);
+          transition: all 0.4s ease-out;
+        }
+
+        .nav-links.active li {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .nav-links.active li:nth-child(1) {
+          transition-delay: 0.2s;
+        }
+        .nav-links.active li:nth-child(2) {
+          transition-delay: 0.4s;
+        }
+        .nav-links.active li:nth-child(3) {
+          transition-delay: 0.6s;
+        }
+        .nav-links.active li:nth-child(4) {
+          transition-delay: 0.8s;
+        }
+        .nav-links.active li:nth-child(5) {
+          transition-delay: 1s;
+        }
+
+        .nav-links a {
+          font-size: 1.2rem;
+          color: #bbbbbb;
+          display: block;
+          padding: 10px 15px;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          text-shadow: none;
+        }
+
+        .nav-links a:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: white;
+          transform: scale(1) translateX(-15px);
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .navbar {
+          position: relative;
+        }
+      }
+    </style>
+  </body>
+</html>

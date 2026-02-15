@@ -1,27 +1,32 @@
-// nav start
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-const menuBackdrop = document.querySelector(".menu-backdrop");
+// charger la navbar
+fetch("navbar/navbar-root.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("navbar-container").innerHTML = data;
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navLinks.classList.toggle("active");
-  menuBackdrop.classList.toggle("active");
-});
+    // fonctionnement de la navbar
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const menuBackdrop = document.querySelector(".menu-backdrop");
 
-//fermer le menu
-menuBackdrop.addEventListener("click", () => {
-  hamburger.classList.remove("active");
-  navLinks.classList.remove("active");
-  menuBackdrop.classList.remove("active");
-});
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navLinks.classList.toggle("active");
+      menuBackdrop.classList.toggle("active");
+    });
 
-//fermer le menu en cliquant sur un lien
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navLinks.classList.remove("active");
-    menuBackdrop.classList.remove("active");
+    menuBackdrop.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navLinks.classList.remove("active");
+      menuBackdrop.classList.remove("active");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navLinks.classList.remove("active");
+        menuBackdrop.classList.remove("active");
+      });
+    });
   });
-});
-// nav end
+  // navbar fin
