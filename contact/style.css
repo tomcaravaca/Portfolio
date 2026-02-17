@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Autofill sans effet */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-webkit-autofill:not(:focus) {
+  -webkit-box-shadow:
+    0 0 0px 9999px #0e0e0e inset,
+    -3px -3px 10px rgba(255, 255, 255, 0.05),
+    2px 2px 10px #000000dd !important;
+  box-shadow:
+    0 0 0px 9999px #0e0e0e inset,
+    -3px -3px 10px rgba(255, 255, 255, 0.05),
+    2px 2px 10px #000000dd !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+input:-webkit-autofill:hover {
+  -webkit-box-shadow:
+    0 0 0px 9999px #0c0c0c inset,
+    0 0 15px rgba(255, 72, 0, 0.5) !important;
+  box-shadow:
+    0 0 0px 9999px #0c0c0c inset,
+    0 0 15px rgba(255, 72, 0, 0.5) !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  max-height: 100vh;
+  width: 100vw;
+  background-attachment: fixed;
+  background: #0a0a0a;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+  margin: 9% 0 0 0;
+}
+
+#form {
+  background: #0c0c0c;
+  padding: 10px 75px 40px;
+  border-radius: 35px;
+  box-shadow:
+    -5px -5px 35px 2px rgba(255, 255, 255, 0.07),
+    5px 5px 25px 2px rgb(0, 0, 0),
+    inset -5px -5px 35px 2px rgba(255, 255, 255, 0.064),
+    inset 5px 5px 25px 2px rgb(0, 0, 0);
+}
+
+.field label {
+  display: block;
+  font-size: 16px;
+  color: #cacaca;
+  margin: 20px 0 12px 5px;
+}
+
+.name,
+.email {
+  background: #0e0e0e;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  min-width: 250px;
+  padding: 15px;
+  min-height: 30px;
+  line-height: 1.5;
+  font-size: 14px;
+  box-shadow:
+    -3px -3px 10px rgba(255, 255, 255, 0.05),
+    2px 2px 10px #000000dd;
+}
+
+.name:hover,
+.email:hover {
+  background: #121212;
+  border-radius: 10px;
+  border: 1px solid #fe7200;
+  box-shadow: 0 0 15px rgba(255, 72, 0, 0.5);
+  transition: all 0s ease;
+  display: block;
+  min-width: 250px;
+  padding: 15px;
+  min-height: 30px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.subject {
+  background: #0e0e0e;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  min-width: 250px;
+  padding: 15px;
+  min-height: 30px;
+  line-height: 1.5;
+  font-size: 14px;
+  box-shadow:
+    inset -3px -3px 10px rgba(255, 255, 255, 0.05),
+    inset 2px 2px 10px #000000dd;
+}
+
+.subject:hover:hover {
+  background: #121212;
+  border-radius: 10px;
+  border: 1px solid #fe7200;
+  box-shadow: 0 0 15px rgba(255, 72, 0, 0.5);
+  transition: all 0s ease;
+  display: block;
+  min-width: 250px;
+  padding: 15px;
+  min-height: 30px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.field textarea {
+  background: #0e0e0e;
+  box-shadow:
+    inset -3px -3px 10px rgba(255, 255, 255, 0.05),
+    inset 2px 2px 10px #000000dd;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  color: #fff;
+  display: block;
+  margin: 0 0 50px 0;
+  min-width: 250px;
+  min-height: 100px;
+  line-height: 1.5;
+  font-size: 12px;
+}
+
+.submit {
+  display: block;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 10px;
+  color: #fff;
+  padding: 15px 80px;
+  border: none;
+  background: #0d0d0d;
+  box-shadow:
+    -3px -3px 10px rgba(255, 255, 255, 0.05),
+    2px 2px 10px #000000dd,
+    inset -3px -3px 10px rgba(255, 255, 255, 0),
+    inset 2px 2px 10px rgba(0, 0, 0, 0);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: #0e0e0e;
+  box-shadow:
+    -3px -3px 10px rgba(255, 255, 255, 0),
+    2px 2px 10px rgba(0, 0, 0, 0),
+    inset -3px -3px 10px rgba(255, 255, 255, 0.05),
+    inset 2px 2px 10px #000000dd;
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: center;
+    align-items: center;
+    margin: 5% 15px;
+    min-height: 100vh;
+  }
+}
