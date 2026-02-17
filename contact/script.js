@@ -34,7 +34,33 @@ fetch("../navbar/navbar.html")
 const btn = document.getElementById("button");
 
 document.getElementById("form").addEventListener("submit", function (event) {
+  btn.textContent = "Envoi en cours ";
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours .";
+  }, 300);
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours ..";
+  }, 600);
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours ...";
+  }, 900);
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours ";
+  }, 1200);
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours .";
+  }, 1500);
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours ..";
+  }, 1800);
+  setTimeout(() => {
+    btn.textContent = "Envoi en cours ...";
+  }, 2100);
   event.preventDefault();
 
-  emailjs.sendForm("service_c6u16xf", "template_c7yqxv4", this);
+  emailjs.sendForm("service_c6u16xf", "template_c7yqxv4", this).then(() => {});
+
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 2500);
 });

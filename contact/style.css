@@ -10,7 +10,6 @@
   box-shadow: none;
 }
 
-/* Autofill sans effet */
 input:-webkit-autofill,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
@@ -52,28 +51,65 @@ a {
 
 .container {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin: 9% 0 0 0;
+  min-height: 90vh;
+  margin-top: 80px;
 }
 
 #form {
   background: #0c0c0c;
   padding: 10px 75px 40px;
+  max-width: 400px;
   border-radius: 35px;
   box-shadow:
     -5px -5px 35px 2px rgba(255, 255, 255, 0.07),
     5px 5px 25px 2px rgb(0, 0, 0),
-    inset -5px -5px 35px 2px rgba(255, 255, 255, 0.064),
+    inset -5px -5px 35px 2px rgba(255, 255, 255, 0.07),
     inset 5px 5px 25px 2px rgb(0, 0, 0);
 }
 
 .field label {
   display: block;
   font-size: 16px;
-  color: #cacaca;
-  margin: 20px 0 12px 5px;
+  color: #fff;
+  padding: 20px 0 0 5px;
+}
+
+.line-name {
+  width: 36px;
+  height: 2px;
+  background: #fe7200;
+  display: block;
+  margin: 8px 0 8px 5px;
+  border-radius: 10px;
+}
+
+.line-mail {
+  width: 42px;
+  height: 2px;
+  background: #fe7200;
+  display: block;
+  margin: 8px 0 8px 5px;
+  border-radius: 10px;
+}
+
+.line-subject {
+  width: 41px;
+  height: 2px;
+  background: #fe7200;
+  display: block;
+  margin: 8px 0 8px 5px;
+  border-radius: 10px;
+}
+
+.line-msg {
+  width: 67px;
+  height: 2px;
+  background: #fe7200;
+  display: block;
+  margin: 8px 0 8px 5px;
+  border-radius: 10px;
 }
 
 .name,
@@ -124,7 +160,7 @@ a {
     inset 2px 2px 10px #000000dd;
 }
 
-.subject:hover:hover {
+.subject:hover {
   background: #121212;
   border-radius: 10px;
   border: 1px solid #fe7200;
@@ -155,10 +191,19 @@ a {
   font-size: 12px;
 }
 
+.field textarea:hover {
+  border: 1px solid #fe7200;
+  box-shadow: 0 0 15px rgba(255, 72, 0, 0.5);
+}
+
 .submit {
   display: block;
   font-size: 14px;
+  margin: 0 auto;
+  letter-spacing: 1px;
   width: 100%;
+  text-align: center;
+  white-space: nowrap;
   border-radius: 10px;
   color: #fff;
   padding: 15px 80px;
@@ -175,18 +220,10 @@ a {
 
 .submit:hover {
   background: #0e0e0e;
+  transform: translateY(3px);
   box-shadow:
     -3px -3px 10px rgba(255, 255, 255, 0),
     2px 2px 10px rgba(0, 0, 0, 0),
     inset -3px -3px 10px rgba(255, 255, 255, 0.05),
     inset 2px 2px 10px #000000dd;
-}
-
-@media (max-width: 768px) {
-  .container {
-    justify-content: center;
-    align-items: center;
-    margin: 5% 15px;
-    min-height: 100vh;
-  }
 }

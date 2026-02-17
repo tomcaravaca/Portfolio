@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>En travaux – Tom.Code</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0;
+        font-family: sans-serif;
+        width: 100%;
+        min-height: 100vh;
+        --color: rgba(76, 76, 76, 0.3);
+        background-color: #0c0c0c;
+        background-image:
+          linear-gradient(
+            -180deg,
+            rgba(5, 5, 5, 0.5),
+            rgba(22, 22, 22, 0.5),
+            rgba(61, 23, 0, 0.5)
+          ),
+          linear-gradient(
+            0deg,
+            transparent 24%,
+            var(--color) 25%,
+            var(--color) 26%,
+            transparent 27%,
+            transparent 74%,
+            var(--color) 75%,
+            var(--color) 76%,
+            transparent 77%,
+            transparent
+          ),
+          linear-gradient(
+            90deg,
+            transparent 24%,
+            var(--color) 25%,
+            var(--color) 26%,
+            transparent 27%,
+            transparent 74%,
+            var(--color) 75%,
+            var(--color) 76%,
+            transparent 77%,
+            transparent
+          );
+        background-size:
+          100% 100%,
+          40px 40px,
+          40px 40px;
+        background-attachment: fixed;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .card {
+        background: #0c0c0c;
+        border-radius: 35px;
+        padding: 40px 80px 40px;
+        box-shadow:
+          -5px -5px 35px 2px rgba(255, 255, 255, 0.07),
+          5px 5px 25px 2px rgb(0, 0, 0),
+          inset -5px -5px 35px 2px rgba(255, 255, 255, 0.064),
+          inset 5px 5px 25px 2px rgb(0, 0, 0);
+        max-width: 600px;
+      }
+
+      .tag {
+        display: inline-block;
+        background: rgba(209, 63, 0, 0.15);
+        border: 1px solid rgba(255, 114, 0, 0.4);
+        color: #fe7200;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 10px 24px;
+        border-radius: 20px;
+        margin-bottom: 35px;
+      }
+
+      h1 {
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 25px;
+        background: linear-gradient(90deg, #fff , #000000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.1;
+      }
+
+      p {
+        color: #888;
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        font-family: sans-serif;
+      }
+
+      .progress-bar {
+        background: #1a1a1a;
+        border-radius: 10px;
+        height: 6px;
+        width: 100%;
+        margin-bottom: 40px;
+        overflow: hidden;
+        box-shadow: inset 2px 2px 5px #000;
+      }
+
+      .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #ff6a00, #ffffff);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 114, 0, 0.6);
+        animation: load 3s ease forwards;
+      }
+
+      @keyframes load {
+        to {
+          width: 65%;
+        }
+      }
+
+      .progress-label {
+        font-size: 11px;
+        color: #555;
+        text-align: right;
+        margin-top: -32px;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+      }
+
+      .btn {
+  display: block;
+  font-size: 14px;
+  margin: 0 auto;
+  letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 10px;
+  color: #fe7200;
+  padding: 15px 80px;
+  border: none;
+  background: #0d0d0d;
+  box-shadow:
+    -3px -3px 10px rgba(255, 255, 255, 0.07),
+    2px 2px 10px rgba(0, 0, 0, 1),
+    inset -3px -3px 10px rgba(255, 255, 255, 0),
+    inset 2px 2px 10px rgba(0, 0, 0, 0);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0e0e0e;
+  transform: translateY(3px);
+  box-shadow:
+    -3px -3px 10px rgba(255, 255, 255, 0),
+    2px 2px 10px rgba(0, 0, 0, 0),
+    inset -3px -3px 10px rgba(255, 255, 255, 0.07),
+    inset 2px 2px 10px rgba(0, 0, 0, 1);
+}
+
+      .code-line {
+        font-size: 12px;
+        color: #d2d2d2;
+        margin-top: 40px;
+        letter-spacing: 1px;
+      }
+
+      .code-line span {
+        color: #6d6d6d;
+        font-weight: 900;
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          padding: 40px 25px;
+          border-radius: 20px;
+        }
+        h1 {
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="tag">En construction</div>
+        <h1>Page en<br />travaux</h1>
+        <p>
+          Cette page est en cours de développement.<br />Revenez bientôt pour la
+          découvrir !
+        </p>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="progress-label">65% complété</div>
+        <a href="index.html" class="btn">Retour à l'accueil</a>
+        <div class="code-line">
+          <span>&lt;</span>Tom.Code <span>/&gt;</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
