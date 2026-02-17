@@ -29,7 +29,28 @@
       </div>
     </nav>
 
+    <!-- compteur de vues -->
+    <div class="vues">
+      <img
+        src="https://hits.sh/tomcaravaca.github.io/portfolio.svg?style=flat-square&label=Nb Vues&color=fe7200&labelColor=111"
+      />
+    </div>
+    <!-- compteur de vues -->
+
     <style>
+      /* compteur de vues */
+      .vues {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+      }
+
+      .vues img {
+        height: 25px;
+        border-radius: 10px;
+      }
+      /* compteur de vues */
       .menu-backdrop {
         position: fixed;
         top: 0;
@@ -168,6 +189,10 @@
       }
 
       @media (max-width: 768px) {
+        .vues {
+          display: none;
+        }
+
         .nav-links {
           position: absolute;
           top: 100%;

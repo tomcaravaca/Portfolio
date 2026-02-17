@@ -43,3 +43,9 @@ fetch("navbar/navbar-root.html")
     });
   });
 // navbar fin
+
+// fetch('https://api.countapi.xyz/hit/tomcaravaca.github.io/visits')
+//   .then(res => res.json())
+//   .then(data => {
+//     document.getElementById('counter').textContent = data.value;
+//   });

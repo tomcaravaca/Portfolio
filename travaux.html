@@ -83,6 +83,7 @@
           inset -5px -5px 35px 2px rgba(255, 255, 255, 0.064),
           inset 5px 5px 25px 2px rgb(0, 0, 0);
         max-width: 600px;
+        margin-top: 60px;
       }
 
       .tag {
@@ -102,7 +103,7 @@
         font-size: 42px;
         font-weight: 800;
         margin-bottom: 25px;
-        background: linear-gradient(90deg, #fff , #000000);
+        background: linear-gradient(90deg, #fff, #000000);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -152,36 +153,36 @@
       }
 
       .btn {
-  display: block;
-  font-size: 14px;
-  margin: 0 auto;
-  letter-spacing: 1px;
-  width: 100%;
-  text-align: center;
-  white-space: nowrap;
-  border-radius: 10px;
-  color: #fe7200;
-  padding: 15px 80px;
-  border: none;
-  background: #0d0d0d;
-  box-shadow:
-    -3px -3px 10px rgba(255, 255, 255, 0.07),
-    2px 2px 10px rgba(0, 0, 0, 1),
-    inset -3px -3px 10px rgba(255, 255, 255, 0),
-    inset 2px 2px 10px rgba(0, 0, 0, 0);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
+        display: block;
+        font-size: 14px;
+        margin: 0 auto;
+        letter-spacing: 1px;
+        width: 100%;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: 10px;
+        color: #fe7200;
+        padding: 15px 80px;
+        border: none;
+        background: #0d0d0d;
+        box-shadow:
+          -3px -3px 10px rgba(255, 255, 255, 0.07),
+          2px 2px 10px rgba(0, 0, 0, 1),
+          inset -3px -3px 10px rgba(255, 255, 255, 0),
+          inset 2px 2px 10px rgba(0, 0, 0, 0);
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
 
-.btn:hover {
-  background: #0e0e0e;
-  transform: translateY(3px);
-  box-shadow:
-    -3px -3px 10px rgba(255, 255, 255, 0),
-    2px 2px 10px rgba(0, 0, 0, 0),
-    inset -3px -3px 10px rgba(255, 255, 255, 0.07),
-    inset 2px 2px 10px rgba(0, 0, 0, 1);
-}
+      .btn:hover {
+        background: #0e0e0e;
+        transform: translateY(3px);
+        box-shadow:
+          -3px -3px 10px rgba(255, 255, 255, 0),
+          2px 2px 10px rgba(0, 0, 0, 0),
+          inset -3px -3px 10px rgba(255, 255, 255, 0.07),
+          inset 2px 2px 10px rgba(0, 0, 0, 1);
+      }
 
       .code-line {
         font-size: 12px;
@@ -207,6 +208,9 @@
     </style>
   </head>
   <body>
+    <!-- navbar début -->
+    <div id="navbar-container"></div>
+    <!-- navbar fin -->
     <div class="container">
       <div class="card">
         <div class="tag">En construction</div>
@@ -225,5 +229,39 @@
         </div>
       </div>
     </div>
+    <script>
+      // charger la navbar
+      fetch("navbar/navbar-root.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+
+          // fonctionnement de la navbar
+          const hamburger = document.querySelector(".hamburger");
+          const navLinks = document.querySelector(".nav-links");
+          const menuBackdrop = document.querySelector(".menu-backdrop");
+
+          hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("active");
+            menuBackdrop.classList.toggle("active");
+          });
+
+          menuBackdrop.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+            menuBackdrop.classList.remove("active");
+          });
+
+          document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+              hamburger.classList.remove("active");
+              navLinks.classList.remove("active");
+              menuBackdrop.classList.remove("active");
+            });
+          });
+        });
+      // navbar fin
+    </script>
   </body>
 </html>

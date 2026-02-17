@@ -729,6 +729,8 @@ p {
 }
 
 @media (max-width: 600px) {
+  .vues {display: none;}
+  
   .intro p {
     margin: 0 5% 0;
     font-size: 12px;
