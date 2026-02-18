@@ -1,12 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   margin: 0;
   background: #070707;
+  min-height: 100vh;
+  font-family: sans-serif;
 }
 
 .game-container {
@@ -14,7 +16,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 80px; /* Espace pour la navbar fixe */
+  padding-top: 120px;
 }
 
 h1 {
@@ -103,7 +105,7 @@ a {
 }
 
 .gagnant {
-  background: #292929 !important;
+  background: #292929;
   animation: brille 1s;
 }
 
@@ -118,4 +120,21 @@ a {
   66% {
     transform: scale(1.1) rotate(-5deg);
   }
+}
+
+@media (max-width: 768px) {
+  .case {
+    font-size: 40px;
+  }
+
+  #grille {
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .game-container {
+  padding-top: 90px;
+}
 }
