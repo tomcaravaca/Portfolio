@@ -247,13 +247,14 @@ a {
   box-shadow: 0 0 35px rgba(255, 72, 0, 0.5);
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .title {
     margin: 90px auto 30px;
   }
 
   .title p {
     font-size: 25px;
+    padding: 10px 0 0 5px;
   }
 
   .field textarea {
