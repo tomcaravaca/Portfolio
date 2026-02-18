@@ -244,3 +244,13 @@ a {
   transform: translateY(3px);
   box-shadow: 0 0 35px rgba(255, 72, 0, 0.5);
 }
+
+@media (max-width:768px) {
+  .title {
+    margin: 110px auto 30px;
+  }
+
+  #form {
+    padding: 20px 30px;
+  }
+}
