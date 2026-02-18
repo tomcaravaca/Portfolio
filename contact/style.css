@@ -59,9 +59,11 @@ a {
   flex-direction: column;
 }
 
-.title h1 {
+.title p {
   color: #fff;
   margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .title-line {
@@ -247,10 +249,14 @@ a {
 
 @media (max-width:768px) {
   .title {
-    margin: 110px auto 30px;
+    margin: 90px auto 30px;
+  }
+
+  .title p {
+    font-size: 25px;
   }
 
   #form {
-    padding: 20px 30px;
+    padding: 10px 30px 20px;
   }
 }
