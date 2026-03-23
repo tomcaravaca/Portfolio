@@ -1,57 +1,233 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Écran de chargement -->
-    <div id="loader">
-      <div class="loader-content">
-        <div class="spinner"></div>
-        <p class="loading-text">
-          <span class="logo2">&lt;</span>Tom.Code/<span class="logo2"
-            >&gt;</span
-          >
-        </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tom Caravaca — Développeur web</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero {
+      min-height: calc(100vh - var(--nav-h) - 40px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 max(40px, calc((100vw - 960px) / 2));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.8rem, 9vw, 7rem);
+      font-weight: 800;
+      line-height: 0.92;
+      color: var(--text);
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      max-width: 400px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .hero-dispo {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 36px;
+      font-weight: 500;
+    }
+    .hero-dispo::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; position: relative; }
+
+    /* About */
+    .about-strip {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 72px 40px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .about-card { padding: 26px; }
+    .about-card .num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .about-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .about-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+
+    /* Skills */
+    .skills-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px 72px;
+    }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-pill {
+      padding: 7px 14px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+      cursor: default;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* Featured */
+    .featured {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+    .featured-inner {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .featured-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .featured-inner h3 { font-size: 2.4rem; margin-bottom: 10px; text-transform: uppercase; }
+    .featured-inner p { color: var(--muted); font-size: 0.88rem; max-width: 460px; line-height: 1.6; }
+    .featured-actions { display: flex; flex-direction: column; gap: 8px; min-width: 140px; }
+
+    @media (max-width: 680px) {
+      .hero { padding: 0 20px; }
+      .about-strip { grid-template-columns: 1fr; padding: 48px 20px 40px; }
+      .skills-section, .featured { padding-left: 20px; padding-right: 20px; }
+      .featured-inner { grid-template-columns: 1fr; }
+      .watermark { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+    <!-- RIDEAU -->
+    <div class="curtain-left" id="curtainLeft"></div>
+    <div class="curtain-right" id="curtainRight"></div>
+<nav>
+  <a href="index.html" class="nav-logo">&lt;Tom<span>.</span>Code /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="active">Accueil</a>
+  <a href="projets.html">Projets</a>
+  <a href="apropos.html">À propos</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="page">
+
+  <section class="hero">
+    <h1>Tom<br><em>Caravaca</em></h1>
+    <p class="hero-sub">Développeur web, bientôt en BTS SIO SLAM.</p>
+    <p class="hero-dispo">Disponible en alternance — septembre 2025</p>
+    <div class="hero-cta">
+      <a href="projets.html" class="btn btn-primary btn-arrow">Voir mes projets </a>
+      <a href="contact.html" class="btn btn-ghost btn-arrow">Me contacter </a>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="card about-card fade-up">
+      <div class="num">01</div>
+      <h3>Développement web</h3>
+      <p>HTML, CSS, JavaScript. Je préfère maîtriser ce que j'écris plutôt que d'empiler des frameworks.</p>
+    </div>
+    <div class="card about-card fade-up" style="transition-delay:.08s">
+      <div class="num">02</div>
+      <h3>WordPress & Elementor</h3>
+      <p>Sites avec réservation en ligne, CSS/JS custom, maintenance. Plusieurs projets déjà en prod.</p>
+    </div>
+    <div class="card about-card fade-up" style="transition-delay:.16s">
+      <div class="num">03</div>
+      <h3>Déploiement</h3>
+      <p>Cloudflare Pages & Workers, GitHub Pages, OVH. De l'idée à la mise en ligne.</p>
+    </div>
+    <div class="card about-card fade-up" style="transition-delay:.24s">
+      <div class="num">04</div>
+      <h3>Infra & réseau</h3>
+      <p>Serveur Ubuntu, GLPI, agents Windows, un peu de SNMP. Ça vient du lycée.</p>
+    </div>
+  </section>
+
+  <section class="skills-section fade-up">
+    <p class="section-title">Stack</p>
+    <div class="skills-grid">
+      <span class="skill-pill">HTML / CSS</span>
+      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">WordPress</span>
+      <span class="skill-pill">Elementor</span>
+      <span class="skill-pill">Git & GitHub</span>
+      <span class="skill-pill">Cloudflare</span>
+      <span class="skill-pill">Linux</span>
+      <span class="skill-pill">GLPI</span>
+    </div>
+  </section>
+
+  <section class="featured">
+    <p class="section-title">Projet à la une</p>
+    <div class="card featured-inner fade-up">
+      <div>
+        <div class="featured-tags">
+          <span class="tag">HTML/CSS/JS</span>
+          <span class="tag">Cloudflare Workers</span>
+          <span class="tag">PWA</span>
+        </div>
+        <h3>Flowly</h3>
+        <p>Mon appli de productivité, faite de zéro. Tâches récurrentes, niveaux XP, météo, calendrier, notifs Telegram, sync GitHub. En prod sur Cloudflare Pages.</p>
+      </div>
+      <div class="featured-actions">
+        <a href="projets.html" class="btn btn-primary btn-arrow">Voir le projet </a>
+        <a href="projets.html" class="btn btn-ghost btn-arrow">Tous les projets </a>
       </div>
     </div>
+  </section>
 
-    <!-- navbar début -->
-    <div id="navbar-container"></div>
-    <!-- navbar fin -->
+</div>
 
-    <!-- titre start -->
-    <div class="titre">
-      <h2>Un Web Développeur Junior</h2>
-      <h1>En quête d'une alternance</h1>
-      <div class="separator1"></div>
-    </div>
-    <!-- titre end -->
+<footer>
+  <span>© 2025 Tom Caravaca</span>
+  <span><a href="https://github.com/tomcaravaca" target="_blank">GitHub</a> · <a href="contact.html">Contact</a></span>
+</footer>
 
-    <!-- site gite start -->
-    <div class="sitegite">
-      <h1>Mon Premier Site Wordpress</h1>
-      <img
-        src="site-img.png"
-        alt="Image du projet de site de gîte"
-        class="sitegite-img"
-      />
-      <a
-        href="https://gite-leshirondelles.fr"
-        class="btn-sitegite"
-        target="_blank"
-        >Voir plus en détail</a
-      >
-    </div>
-    <!-- site gite end -->
-
-    <!-- contact screen start -->
-    <div class="screen" id="contact-screen"></div>
-    <!-- contact screen end -->
-     
-    <script src="script.js"></script>
-  </body>
+<script src="nav.js"></script>
+</body>
 </html>
