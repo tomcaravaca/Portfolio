@@ -1,318 +1,477 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projets — Tom Caravaca</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .projects-hero {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 60px 40px 44px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 44px;
-    }
-    .projects-hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .projects-hero p { color: var(--muted); max-width: 420px; font-size: 0.94rem; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projets — Tom Caravaca</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .projects-hero {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 60px 40px 44px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 44px;
+      }
+      .projects-hero h1 {
+        font-size: clamp(2.8rem, 7vw, 5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .projects-hero p {
+        color: var(--muted);
+        max-width: 420px;
+        font-size: 0.94rem;
+      }
 
-    .projects-grid {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 40px 100px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-      gap: 16px;
-    }
+      .projects-grid {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 40px 100px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 16px;
+      }
 
-    .project-card { display: flex; flex-direction: column; overflow: hidden; }
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
 
-    .project-card-top {
-      height: 110px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 16px 20px;
-    }
-    .proj-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.92);
-    }
-    .proj-year { font-size: 0.74rem; color: rgba(255,255,255,0.45); font-weight: 500; }
+      .project-card-top {
+        height: 110px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 16px 20px;
+      }
+      .proj-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .proj-year {
+        font-size: 0.74rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 500;
+      }
 
-    .p-flowly .project-card-top { background: linear-gradient(135deg, #1a56ff 0%, #6c3aff 100%); }
-    .p-nas    .project-card-top { background: linear-gradient(135deg, #0d7a3c 0%, #0a5a2e 100%); }
-    .p-gite   .project-card-top { background: linear-gradient(135deg, #c46200 0%, #8a3d00 100%); }
-    .p-jais9  .project-card-top { background: linear-gradient(135deg, #7c2dbe 0%, #4a1080 100%); }
+      .p-flowly .project-card-top {
+        background: linear-gradient(135deg, #1a56ff 0%, #6c3aff 100%);
+      }
+      .p-nas .project-card-top {
+        background: linear-gradient(135deg, #0d7a3c 0%, #0a5a2e 100%);
+      }
+      .p-gite .project-card-top {
+        background: linear-gradient(135deg, #c46200 0%, #8a3d00 100%);
+      }
+      .p-jais9 .project-card-top {
+        background: linear-gradient(135deg, #7c2dbe 0%, #4a1080 100%);
+      }
 
-    .project-card-body {
-      padding: 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .project-card-body h2 { font-size: 1.4rem; font-weight: 700; text-transform: uppercase; }
-    .project-card-body p { color: var(--muted); font-size: 0.86rem; line-height: 1.6; flex: 1; }
-    .project-links { display: flex; gap: 8px; padding-top: 6px; flex-wrap: wrap; }
+      .project-card-body {
+        padding: 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .project-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .project-card-body h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .project-card-body p {
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.6;
+        flex: 1;
+      }
+      .project-links {
+        display: flex;
+        gap: 8px;
+        padding-top: 6px;
+        flex-wrap: wrap;
+      }
 
-    @media (max-width: 680px) {
-      .projects-hero { padding: 40px 20px 32px; }
-      .projects-grid { grid-template-columns: 1fr; padding: 0 20px 80px; }
-    }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo">&lt;Tom<span>.</span>Code /&gt;</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="projets.html" class="active">Projets</a></li>
-    <li><a href="apropos.html">À propos</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="index.html">Accueil</a>
-  <a href="projets.html" class="active">Projets</a>
-  <a href="apropos.html">À propos</a>
-  <a href="contact.html">Contact</a>
-</div>
-
-<div class="page">
-
-  <header class="projects-hero fade-up">
-    <h1>Mes projets</h1>
-    <p>Des projets réels, en production — pas des exercices scolaires.</p>
-  </header>
-
-  <div class="projects-grid">
-
-    <!-- Flowly -->
-    <div class="card project-card p-flowly fade-up">
-      <div class="project-card-top">
-        <span class="proj-label">Flowly</span>
-        <span class="proj-year">2024–2025</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-tags">
-          <span class="tag">HTML/CSS/JS</span>
-          <span class="tag">Cloudflare</span>
-          <span class="tag">PWA</span>
-        </div>
-        <h2>Flowly</h2>
-        <p>Mon appli de productivité faite de zéro. Tâches récurrentes, niveaux XP, météo, calendrier, notifs Telegram, sync GitHub.</p>
-        <div class="project-links">
-          <a href="https://flowly.tomrepar.workers.dev" target="_blank" class="btn btn-primary btn-arrow">Voir le site </a>
-          <a href="https://github.com/tomcaravaca/Flowly" target="_blank" class="btn btn-ghost btn-arrow">GitHub </a>
-          <button class="btn btn-ghost btn-arrow" onclick="openModal('flowly')">Détails </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- NAS -->
-    <div class="card project-card p-nas fade-up" style="transition-delay:.08s">
-      <div class="project-card-top">
-        <span class="proj-label">NAS Monitor</span>
-        <span class="proj-year">Stage 2024</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-tags">
-          <span class="tag">HTML / CSS / JS</span>
-          <span class="tag">Stage Médiaconcept</span>
-        </div>
-        <h2>Dashboard NAS</h2>
-        <p>Interface de monitoring en temps réel développée pendant mon stage chez Médiaconcept à Angoulême. Aucune dépendance externe.</p>
-        <div class="project-links">
-          <button class="btn btn-ghost btn-arrow" onclick="openModal('nas')">Détails </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gîte -->
-    <div class="card project-card p-gite fade-up" style="transition-delay:.12s">
-      <div class="project-card-top">
-        <span class="proj-label">Les Hirondelles</span>
-        <span class="proj-year">2024</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-tags">
-          <span class="tag">WordPress</span>
-          <span class="tag">Elementor</span>
-        </div>
-        <h2>Gîte Les Hirondelles</h2>
-        <p>Site vitrine avec réservation en ligne synchronisée avec Airbnb et Booking. Page dédiée soirée pizza, galerie photo.</p>
-        <div class="project-links">
-          <a href="https://gite-leshirondelles.fr" target="_blank" class="btn btn-primary btn-arrow">Voir le site </a>
-          <button class="btn btn-ghost btn-arrow" onclick="openModal('gite')">Détails </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Jais9 -->
-    <div class="card project-card p-jais9 fade-up" style="transition-delay:.16s">
-      <div class="project-card-top">
-        <span class="proj-label">Jais9</span>
-        <span class="proj-year">2024</span>
-      </div>
-      <div class="project-card-body">
-        <div class="project-tags">
-          <span class="tag">WordPress</span>
-          <span class="tag">CSS/JS custom</span>
-        </div>
-        <h2>Jais9.fr</h2>
-        <p>Personnalisation complète d'un WordPress pro : navbar custom, boutons animés, dark theme doré, injection CSS/JS, résolution panne PHP.</p>
-        <div class="project-links">
-          <a href="https://jais9.fr" target="_blank" class="btn btn-primary btn-arrow">Voir le site </a>
-          <button class="btn btn-ghost btn-arrow" onclick="openModal('jais9')">Détails </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ══ MODALS ══ -->
-
-<!-- Modal Flowly -->
-<div class="modal-overlay" id="modal-flowly">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('flowly')">✕</button>
-    <div class="modal-img-placeholder p-flowly-bg">Flowly</div>
-    <div class="modal-body">
-      <div class="modal-tags">
-        <span class="tag">HTML/CSS/JS</span>
-        <span class="tag">Cloudflare Pages</span>
-        <span class="tag">Cloudflare Workers</span>
-        <span class="tag">PWA</span>
-      </div>
-      <h2>Flowly</h2>
-      <p>Application de productivité personnelle que j'ai construite de A à Z, sans framework. Tout est dans un seul fichier HTML auto-contenu, déployé sur Cloudflare Pages.</p>
-      <p>Le backend tourne sur un Cloudflare Worker qui gère les notifications Telegram et la synchronisation des données vers un repo GitHub.</p>
-      <ul>
-        <li>Tâches avec récurrence (quotidienne, hebdo, mensuelle)</li>
-        <li>Système de niveaux XP — 12 niveaux de Novice à Transcendant</li>
-        <li>Widget météo via API Open-Meteo (sans clé)</li>
-        <li>Calendrier mensuel avec vue des tâches par jour</li>
-        <li>Notifications Telegram via bot personnalisé</li>
-        <li>Synchronisation des données vers GitHub (flowly-data.json)</li>
-        <li>Installable sur iPhone depuis Safari (PWA)</li>
-        <li>Score "Flowly" calculé sur les statistiques d'utilisation</li>
+      @media (max-width: 680px) {
+        .projects-hero {
+          padding: 40px 20px 32px;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+          padding: 0 20px 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">&lt;Tom<span>.</span>Code /&gt;</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="projets.html" class="active">Projets</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="modal-actions">
-        <a href="https://flowly.tomrepar.workers.dev" target="_blank" class="btn btn-primary btn-arrow">Voir le site </a>
-        <a href="https://github.com/tomcaravaca/Flowly" target="_blank" class="btn btn-ghost btn-arrow">GitHub </a>
+      <div class="nav-right">
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html" class="active">Projets</a>
+      <a href="apropos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="page">
+      <header class="projects-hero fade-up">
+        <h1>Mes projets</h1>
+        <p>Des projets réels, en production — pas des exercices scolaires.</p>
+      </header>
+
+      <div class="projects-grid">
+
+        <!-- Jais9 -->
+        <div
+          class="card project-card p-jais9 fade-up"
+          style="transition-delay: 0.16s"
+        >
+          <div class="project-card-top">
+            <span class="proj-label">Jais9</span>
+            <span class="proj-year">2026</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">CSS/JS custom</span>
+            </div>
+            <h2>Jais9.fr</h2>
+            <p>
+              Personnalisation complète d'un WordPress pro : navbar custom,
+              boutons animés, dark theme doré, injection CSS/JS, résolution
+              panne PHP.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://jais9.fr"
+                target="_blank"
+                class="btn btn-primary btn-arrow"
+                >Voir le site
+              </a>
+              <button
+                class="btn btn-ghost btn-arrow"
+                onclick="openModal('jais9')"
+              >
+                Détails
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NAS -->
+        <div
+          class="card project-card p-nas fade-up"
+          style="transition-delay: 0.08s"
+        >
+          <div class="project-card-top">
+            <span class="proj-label">NAS Monitor</span>
+            <span class="proj-year">Stage 2026</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags">
+              <span class="tag">HTML / CSS / JS</span>
+              <span class="tag">Stage Médiaconcept</span>
+            </div>
+            <h2>Dashboard NAS</h2>
+            <p>
+              Interface de monitoring en temps réel développée pendant mon stage
+              chez Médiaconcept à Angoulême. Aucune dépendance externe.
+            </p>
+            <div class="project-links">
+              <button
+                class="btn btn-ghost btn-arrow"
+                onclick="openModal('nas')"
+              >
+                Détails
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flowly -->
+        <div class="card project-card p-flowly fade-up">
+          <div class="project-card-top">
+            <span class="proj-label">Flowly</span>
+            <span class="proj-year">2026</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags">
+              <span class="tag">HTML/CSS/JS</span>
+              <span class="tag">Cloudflare</span>
+              <span class="tag">PWA</span>
+            </div>
+            <h2>Flowly</h2>
+            <p>
+              Mon appli de productivité faite de zéro. Tâches récurrentes,
+              niveaux XP, météo, calendrier, notifs Telegram, sync GitHub.
+            </p>
+            <div class="project-links">
+              <button
+                class="btn btn-ghost btn-arrow"
+                onclick="openModal('flowly')"
+              >
+                Détails
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gîte -->
+        <div
+          class="card project-card p-gite fade-up"
+          style="transition-delay: 0.12s"
+        >
+          <div class="project-card-top">
+            <span class="proj-label">Les Hirondelles</span>
+            <span class="proj-year">2025</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">Elementor</span>
+            </div>
+            <h2>Gîte Les Hirondelles</h2>
+            <p>
+              Site vitrine avec réservation en ligne synchronisée avec Airbnb et
+              Booking. Page dédiée soirée pizza, galerie photo.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://gite-leshirondelles.fr"
+                target="_blank"
+                class="btn btn-primary btn-arrow"
+                >Voir le site
+              </a>
+              <button
+                class="btn btn-ghost btn-arrow"
+                onclick="openModal('gite')"
+              >
+                Détails
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal NAS -->
-<div class="modal-overlay" id="modal-nas">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('nas')">✕</button>
-    <div class="modal-img-placeholder p-nas-bg">NAS</div>
-    <div class="modal-body">
-      <div class="modal-tags">
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Stage Médiaconcept</span>
-      </div>
-      <h2>Dashboard NAS</h2>
-      <p>Développé pendant mon stage de 4 semaines chez Médiaconcept, une agence de communication à Angoulême. La mission : créer une interface de monitoring pour un NAS Synology utilisé en interne.</p>
-      <p>Contrainte principale : zéro dépendance externe. Tout devait tourner en HTML/CSS/JS pur, sans librairie, pour rester léger et maintenable.</p>
-      <ul>
-        <li>Affichage en temps réel des métriques système (CPU, RAM, stockage)</li>
-        <li>Lecture des données via l'API REST du NAS Synology</li>
-        <li>Interface responsive utilisable depuis n'importe quel poste du réseau</li>
-        <li>Aucune dépendance — fichier HTML autonome</li>
-        <li>Mise à jour automatique des données toutes les 10 secondes</li>
-      </ul>
-      <p style="font-size:0.82rem;color:var(--muted);margin-top:8px">Pas de lien public disponible — interface interne à l'entreprise.</p>
-    </div>
-  </div>
-</div>
+    <!-- ══ MODALS ══ -->
 
-<!-- Modal Gîte -->
-<div class="modal-overlay" id="modal-gite">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('gite')">✕</button>
-    <!-- Remplace src par une capture d'écran du site si tu en as une -->
-    <div class="modal-img-placeholder p-gite-bg">Gîte</div>
-    <div class="modal-body">
-      <div class="modal-tags">
-        <span class="tag">WordPress</span>
-        <span class="tag">Elementor</span>
-        <span class="tag">OVH</span>
-      </div>
-      <h2>Gîte Les Hirondelles</h2>
-      <p>Site vitrine pour le gîte familial à Mareuil-en-Périgord. J'en suis le développeur et l'administrateur. Objectif : permettre aux voyageurs de réserver directement en ligne, sans passer par une plateforme.</p>
-      <ul>
-        <li>Système de réservation en ligne synchronisé avec Airbnb et Booking via iCal</li>
-        <li>Calendrier de disponibilités mis à jour automatiquement</li>
-        <li>Page dédiée "Soirée pizza au feu de bois" — menu tabulé, galerie, tarifs</li>
-        <li>Galerie photo optimisée</li>
-        <li>Hébergé sur OVH, domaine personnalisé</li>
-        <li>Maintenance et mises à jour régulières</li>
-      </ul>
-      <div class="modal-actions">
-        <a href="https://gite-leshirondelles.fr" target="_blank" class="btn btn-primary btn-arrow">Voir le site </a>
+    <!-- Modal Flowly -->
+    <div class="modal-overlay" id="modal-flowly">
+      <div class="modal" style="position: relative">
+        <button class="modal-close" onclick="closeModal('flowly')">✕</button>
+        <div class="modal-img-placeholder p-flowly-bg">Flowly</div>
+        <div class="modal-body">
+          <div class="modal-tags">
+            <span class="tag">HTML/CSS/JS</span>
+            <span class="tag">Cloudflare Pages</span>
+            <span class="tag">Cloudflare Workers</span>
+            <span class="tag">PWA</span>
+          </div>
+          <h2>Flowly</h2>
+          <p>
+            Application de productivité personnelle que j'ai construite de A à
+            Z, sans framework. Tout est dans un seul fichier HTML auto-contenu,
+            déployé sur Cloudflare Pages.
+          </p>
+          <p>
+            Le backend tourne sur un Cloudflare Worker qui gère les
+            notifications Telegram et la synchronisation des données vers un
+            repo GitHub.
+          </p>
+          <ul>
+            <li>Tâches avec récurrence (quotidienne, hebdo, mensuelle)</li>
+            <li>Système de niveaux XP — 12 niveaux de Novice à Transcendant</li>
+            <li>Widget météo via API Open-Meteo (sans clé)</li>
+            <li>Calendrier mensuel avec vue des tâches par jour</li>
+            <li>Notifications Telegram via bot personnalisé</li>
+            <li>Synchronisation des données vers GitHub (flowly-data.json)</li>
+            <li>Installable sur iPhone depuis Safari (PWA)</li>
+            <li>Score "Flowly" calculé sur les statistiques d'utilisation</li>
+          </ul>
+          <div class="modal-actions">
+            <a
+              href="https://flowly.tomrepar.workers.dev"
+              target="_blank"
+              class="btn btn-primary btn-arrow"
+              >Voir le site
+            </a>
+            <a
+              href="https://github.com/tomcaravaca/Flowly"
+              target="_blank"
+              class="btn btn-ghost btn-arrow"
+              >GitHub
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Modal Jais9 -->
-<div class="modal-overlay" id="modal-jais9">
-  <div class="modal" style="position:relative">
-    <button class="modal-close" onclick="closeModal('jais9')">✕</button>
-    <!-- Remplace src par une capture d'écran si tu en as une -->
-    <div class="modal-img-placeholder p-jais9-bg">Jais9</div>
-    <div class="modal-body">
-      <div class="modal-tags">
-        <span class="tag">WordPress</span>
-        <span class="tag">Elementor</span>
-        <span class="tag">CSS/JS custom</span>
-        <span class="tag">PHP 8.2</span>
-      </div>
-      <h2>Jais9.fr</h2>
-      <p>Site WordPress pour une praticienne en lithothérapie et numérologie. J'ai pris en charge la personnalisation visuelle complète et la maintenance technique du site.</p>
-      <ul>
-        <li>Navbar entièrement custom injectée via plugin (sans modifier le thème enfant)</li>
-        <li>Boutons CTA animés avec effets au hover</li>
-        <li>Dark theme personnalisé — fond #0d0d0d, accents dorés (#c9a96e)</li>
-        <li>Mise en page des articles de blog retravaillée</li>
-        <li>Widget liste des articles custom sur la page d'accueil</li>
-        <li>Résolution d'une panne complète du site causée par une incompatibilité PHP — migration vers PHP 8.2 via l'interface OVH</li>
-      </ul>
-      <div class="modal-actions">
-        <a href="https://jais9.fr" target="_blank" class="btn btn-primary btn-arrow">Voir le site </a>
+    <!-- Modal NAS -->
+    <div class="modal-overlay" id="modal-nas">
+      <div class="modal" style="position: relative">
+        <button class="modal-close" onclick="closeModal('nas')">✕</button>
+        <div class="modal-img-placeholder p-nas-bg">NAS</div>
+        <div class="modal-body">
+          <div class="modal-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Stage Médiaconcept</span>
+          </div>
+          <h2>Dashboard NAS</h2>
+          <p>
+            Développé pendant mon stage de 4 semaines chez Médiaconcept, une
+            agence de communication à Angoulême. La mission : créer une
+            interface de monitoring pour un NAS Synology utilisé en interne.
+          </p>
+          <p>
+            Contrainte principale : zéro dépendance externe. Tout devait tourner
+            en HTML/CSS/JS pur, sans librairie, pour rester léger et
+            maintenable.
+          </p>
+          <ul>
+            <li>
+              Affichage en temps réel des métriques système (CPU, RAM, stockage)
+            </li>
+            <li>Lecture des données via l'API REST du NAS Synology</li>
+            <li>
+              Interface responsive utilisable depuis n'importe quel poste du
+              réseau
+            </li>
+            <li>Aucune dépendance — fichier HTML autonome</li>
+            <li>Mise à jour automatique des données toutes les 10 secondes</li>
+          </ul>
+          <p style="font-size: 0.82rem; color: var(--muted); margin-top: 8px">
+            Pas de lien public disponible — interface interne à l'entreprise.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<footer>
-  <span>© 2025 Tom Caravaca</span>
-  <span><a href="https://github.com/tomcaravaca" target="_blank">GitHub</a> · <a href="contact.html">Contact</a></span>
-</footer>
+    <!-- Modal Gîte -->
+    <div class="modal-overlay" id="modal-gite">
+      <div class="modal" style="position: relative">
+        <button class="modal-close" onclick="closeModal('gite')">✕</button>
+        <!-- Remplace src par une capture d'écran du site si tu en as une -->
+        <div class="modal-img-placeholder p-gite-bg">Gîte</div>
+        <div class="modal-body">
+          <div class="modal-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Elementor</span>
+            <span class="tag">OVH</span>
+          </div>
+          <h2>Gîte Les Hirondelles</h2>
+          <p>
+            Site vitrine pour le gîte familial à Mareuil-en-Périgord. J'en suis
+            le développeur et l'administrateur. Objectif : permettre aux
+            voyageurs de réserver directement en ligne, sans passer par une
+            plateforme.
+          </p>
+          <ul>
+            <li>
+              Système de réservation en ligne synchronisé avec Airbnb et Booking
+              via iCal
+            </li>
+            <li>Calendrier de disponibilités mis à jour automatiquement</li>
+            <li>
+              Page dédiée "Soirée pizza au feu de bois" — menu tabulé, galerie,
+              tarifs
+            </li>
+            <li>Galerie photo optimisée</li>
+            <li>Hébergé sur OVH, domaine personnalisé</li>
+            <li>Maintenance et mises à jour régulières</li>
+          </ul>
+          <div class="modal-actions">
+            <a
+              href="https://gite-leshirondelles.fr"
+              target="_blank"
+              class="btn btn-primary btn-arrow"
+              >Voir le site
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<script src="nav.js"></script>
-</body>
+    <!-- Modal Jais9 -->
+    <div class="modal-overlay" id="modal-jais9">
+      <div class="modal" style="position: relative">
+        <button class="modal-close" onclick="closeModal('jais9')">✕</button>
+        <!-- Remplace src par une capture d'écran si tu en as une -->
+        <div class="modal-img-placeholder p-jais9-bg">Jais9</div>
+        <div class="modal-body">
+          <div class="modal-tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Elementor</span>
+            <span class="tag">CSS/JS custom</span>
+            <span class="tag">PHP 8.2</span>
+          </div>
+          <h2>Jais9.fr</h2>
+          <p>
+            Site WordPress pour une praticienne en lithothérapie et numérologie.
+            J'ai pris en charge la personnalisation visuelle complète et la
+            maintenance technique du site.
+          </p>
+          <ul>
+            <li>
+              Navbar entièrement custom injectée via plugin (sans modifier le
+              thème enfant)
+            </li>
+            <li>Boutons CTA animés avec effets au hover</li>
+            <li>
+              Dark theme personnalisé — fond #0d0d0d, accents dorés (#c9a96e)
+            </li>
+            <li>Mise en page des articles de blog retravaillée</li>
+            <li>Widget liste des articles custom sur la page d'accueil</li>
+            <li>
+              Résolution d'une panne complète du site causée par une
+              incompatibilité PHP — migration vers PHP 8.2 via l'interface OVH
+            </li>
+          </ul>
+          <div class="modal-actions">
+            <a
+              href="https://jais9.fr"
+              target="_blank"
+              class="btn btn-primary btn-arrow"
+              >Voir le site
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2025 Tom Caravaca</span>
+      <span
+        ><a href="https://github.com/tomcaravaca" target="_blank">GitHub</a> ·
+        <a href="contact.html">Contact</a></span
+      >
+    </footer>
+
+    <script src="nav.js"></script>
+  </body>
 </html>

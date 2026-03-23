@@ -38,36 +38,36 @@ body {
 .curtain-left {
   position: fixed;
   top: 0;
-  height: 100%;
-  width: 50%;
-  background: linear-gradient(to right, #000 99.5%, #fff 0.5%);
+  height: 50%;
+  width: 100%;
+  background: linear-gradient(to bottom, #000 99.7%, #fff 1%);
   z-index: 9999;
   transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
 }
 .curtain-right {
   position: fixed;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  background: linear-gradient(to left, #000 99.5%, #fff 0.5%);
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  background: linear-gradient(to top, #000 99.7%, #fff 1%);
   z-index: 9999;
   transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
 }
 .curtain-left {
   left: 0;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 .curtain-right {
   right: 0;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 .curtain-left.open {
-  transform: translateX(-100%);
+  transform: translateY(-100%);
 }
 .curtain-right.open {
-  transform: translateX(100%);
+  transform: translateY(100%);
 }
 
 /* Glows de fond */

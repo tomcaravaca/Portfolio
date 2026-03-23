@@ -13,7 +13,7 @@
     <style>
       :root[data-theme="dark"] {
         --bg: #0a0a0a;
-        --sidebar: #161616;
+        --sidebar: #000000;
         --text: #ffffff;
         --muted: #888888;
         --body: #cccccc;
@@ -58,40 +58,72 @@
           color 0.4s;
       }
 
+      /* Glows de fond */
+      body::before {
+        content: "";
+        position: fixed;
+        top: -200px;
+        left: 200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(124, 109, 250, 0.1) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        bottom: -200px;
+        right: -200px;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 210, 180, 0.07) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
       /* ── RIDEAU ── */
-      .curtain-left{
+      .curtain-left {
         position: fixed;
         top: 0;
-        height: 50%;
-        width: 100%;
-        background: linear-gradient(to bottom, #000 99.7%, #fff 1%);
+        height: 100%;
+        width: 50%;
+        background: linear-gradient(to right, #000 99.5%, #fff 0.5%);
         z-index: 9999;
         transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
         pointer-events: none;
       }
       .curtain-right {
         position: fixed;
-        bottom: 0;
-        height: 50%;
-        width: 100%;
-        background: linear-gradient(to top, #000 99.7%, #fff 1%);
+        top: 0;
+        height: 100%;
+        width: 50%;
+        background: linear-gradient(to left, #000 99.5%, #fff 0.5%);
         z-index: 9999;
         transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
         pointer-events: none;
       }
       .curtain-left {
         left: 0;
-        transform: translateY(0);
+        transform: translateX(0);
       }
       .curtain-right {
         right: 0;
-        transform: translateY(0);
+        transform: translateX(0);
       }
       .curtain-left.open {
-        transform: translateY(-100%);
+        transform: translateX(-100%);
       }
       .curtain-right.open {
-        transform: translateY(100%);
+        transform: translateX(100%);
       }
 
       /* SIDEBAR */
@@ -102,7 +134,8 @@
         width: 320px;
         height: 100vh;
         background: var(--sidebar);
-        box-shadow: var(--sidebar-shadow);
+        border-right: 2px solid #fff;
+        box-shadow: 0 0 30px #ffffff30;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -122,16 +155,14 @@
         width: 100%;
       }
       .pic {
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid var(--text);
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.07);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         transition: border-color 0.4s;
-        background: #222
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Ccircle cx='90' cy='70' r='34' fill='%23555'/%3E%3Cellipse cx='90' cy='165' rx='62' ry='52' fill='%23555'/%3E%3C/svg%3E")
-          center/cover;
+        background: #000000;
       }
       .sidebar-name {
         text-align: center;
@@ -198,7 +229,7 @@
       }
 
       .btn-back {
-        background: #131313;
+        background: #000000;
         color: var(--text);
         font-family: "Saira Extra Condensed", sans-serif;
         font-size: 0.9rem;
@@ -212,15 +243,13 @@
         border: 1px solid #e1e1e1;
         cursor: pointer;
         box-shadow: 0 0 10px #ffffff50;
-        transition:
-          box-shadow 0.4s,
-          color 0.4s,
-          background 0.4s;
+        transition: all 0.3s ease;
         display: inline-block;
       }
 
       .btn-back:hover {
-        box-shadow: var(--btn-hover);
+        box-shadow: 0 0 20px #ffffff80;
+        transform: scale(1.05) translateY(-2px);
       }
 
       /* MOBILE NAV */
@@ -305,6 +334,7 @@
         padding: 14px 0 18px;
       }
       .mobile-menu .nav-link {
+        text-align: center;
         opacity: 0;
         transform: translateY(-6px);
         transition:
@@ -582,11 +612,18 @@
 
       /* RESPONSIVE */
       @media (max-width: 900px) {
+        body::before {
+          left: -150px;
+          top: -100px;
+        }
+
         .sidebar {
           display: none;
         }
         .mobile-bar {
           display: block;
+          border-bottom: 1px solid #fff;
+          box-shadow: 0 0 30px #ffffff30;
         }
         .main {
           margin-left: 0;
@@ -614,9 +651,9 @@
     <!-- SIDEBAR DESKTOP -->
     <aside class="sidebar">
       <div class="sidebar-top">
-        <img src="cv-site.png" alt="Photo de profil" class="pic" />
+        <img src="assets/pdp.png" alt="Photo de profil" class="pic" />
         <div class="sidebar-name">
-          <h1>Votre Nom</h1>
+          <h1>Tom Caravaca</h1>
           <p>Développeur Web</p>
         </div>
         <nav class="nav-links">
