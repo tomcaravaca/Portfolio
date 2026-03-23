@@ -1,24 +1,904 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>À propos de moi</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>CV — Votre Nom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@400;600;700&family=Saira:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root[data-theme="dark"] {
+        --bg: #0a0a0a;
+        --sidebar: #161616;
+        --text: #ffffff;
+        --muted: #888888;
+        --body: #cccccc;
+        --border: rgba(255, 255, 255, 0.07);
+        --card: #1a1a1a;
+        --card-hover: #1f1f1f;
+        --tag: rgba(255, 255, 255, 0.06);
+        --tag-border: rgba(255, 255, 255, 0.12);
+        --bar: rgba(255, 255, 255, 0.08);
+        --sidebar-shadow: 5px 0 50px rgba(255, 255, 255, 0.04);
+        --btn-in:
+          inset 2px 2px 10px rgba(255, 255, 255, 0.08),
+          inset -2px -2px 10px rgba(0, 0, 0, 0.9);
+        --btn-hover:
+          inset -2px -2px 10px rgba(255, 255, 255, 0.08),
+          inset 2px 2px 10px rgba(0, 0, 0, 0.9);
+      }
+      :root[data-theme="light"] {
+        --bg: #f2f2ee;
+        --sidebar: #ffffff;
+        --text: #111111;
+        --muted: #777777;
+        --body: #444444;
+        --border: rgba(0, 0, 0, 0.07);
+        --card: #ffffff;
+        --card-hover: #ebebeb;
+        --tag: rgba(0, 0, 0, 0.05);
+        --tag-border: rgba(0, 0, 0, 0.1);
+        --bar: rgba(0, 0, 0, 0.08);
+        --sidebar-shadow: 5px 0 50px rgba(0, 0, 0, 0.07);
+        --btn-in:
+          inset 2px 2px 8px rgba(0, 0, 0, 0.07),
+          inset -2px -2px 8px rgba(255, 255, 255, 0.9);
+        --btn-hover:
+          inset -2px -2px 8px rgba(0, 0, 0, 0.07),
+          inset 2px 2px 8px rgba(255, 255, 255, 0.9);
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      body {
+        display: flex;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--body);
+        font-family: "Saira", sans-serif;
+        transition:
+          background 0.4s,
+          color 0.4s;
+      }
+
+      /* ── RIDEAU ── */
+      .curtain-left,
+      .curtain-right {
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        background: #161616;
+        z-index: 9999;
+        transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+        pointer-events: none;
+      }
+      .curtain-left {
+        left: 0;
+        transform: translateX(0);
+      }
+      .curtain-right {
+        right: 0;
+        transform: translateX(0);
+      }
+      .curtain-left.open {
+        transform: translateX(-100%);
+      }
+      .curtain-right.open {
+        transform: translateX(100%);
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 320px;
+        height: 100vh;
+        background: var(--sidebar);
+        box-shadow: var(--sidebar-shadow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 0 40px;
+        transition:
+          background 0.4s,
+          box-shadow 0.4s;
+        z-index: 100;
+        font-family: "Saira Extra Condensed", sans-serif;
+      }
+      .sidebar-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+      }
+      .pic {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--text);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.07);
+        transition: border-color 0.4s;
+        background: #222
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Ccircle cx='90' cy='70' r='34' fill='%23555'/%3E%3Cellipse cx='90' cy='165' rx='62' ry='52' fill='%23555'/%3E%3C/svg%3E")
+          center/cover;
+      }
+      .sidebar-name {
+        text-align: center;
+        padding: 0 20px;
+      }
+      .sidebar-name h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--text);
+        transition: color 0.4s;
+      }
+      .sidebar-name p {
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 5px;
+        transition: color 0.4s;
+      }
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      .nav-link {
+        position: relative;
+        display: inline-block;
+        color: var(--text);
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 13px 0;
+        transition: color 0.4s;
+        cursor: pointer;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition:
+          width 0.5s ease,
+          background 0.4s;
+      }
+      .nav-link:hover::after {
+        width: 110%;
+      }
+      .sidebar-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+      }
+      .btn-theme,
+      .btn-back {
+        background: var(--sidebar);
+        color: var(--text);
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 12px 0;
+        width: 200px;
+        text-align: center;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--btn-in);
+        transition:
+          box-shadow 0.4s,
+          color 0.4s,
+          background 0.4s;
+        display: inline-block;
+      }
+      .btn-theme:hover,
+      .btn-back:hover {
+        box-shadow: var(--btn-hover);
+      }
+
+      /* MOBILE NAV */
+      .mobile-bar {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        background: var(--sidebar);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        transition: background 0.4s;
+      }
+      .mobile-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+        padding: 0 20px;
+      }
+      .mobile-name {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text);
+        transition: color 0.4s;
+      }
+      .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 7px;
+        border-radius: 8px;
+        transition: background 0.3s;
+      }
+      .burger:hover {
+        background: var(--tag);
+      }
+      .burger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transform-origin: center;
+        transition:
+          background 0.4s,
+          transform 0.35s ease,
+          opacity 0.3s,
+          width 0.3s;
+      }
+      .burger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .burger.open span:nth-child(2) {
+        opacity: 0;
+        width: 0;
+      }
+      .burger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .mobile-menu {
+        overflow: hidden;
+        max-height: 0;
+        border-top: 1px solid transparent;
+        transition:
+          max-height 0.4s ease,
+          border-color 0.3s;
+      }
+      .mobile-menu.open {
+        max-height: 360px;
+        border-top-color: var(--border);
+      }
+      .mobile-menu-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 0 18px;
+      }
+      .mobile-menu .nav-link {
+        opacity: 0;
+        transform: translateY(-6px);
+        transition:
+          opacity 0.3s,
+          transform 0.3s,
+          color 0.4s;
+      }
+      .mobile-menu.open .nav-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .mobile-menu.open .nav-link:nth-child(1) {
+        transition-delay: 0.04s;
+      }
+      .mobile-menu.open .nav-link:nth-child(2) {
+        transition-delay: 0.09s;
+      }
+      .mobile-menu.open .nav-link:nth-child(3) {
+        transition-delay: 0.14s;
+      }
+      .mobile-menu.open .nav-link:nth-child(4) {
+        transition-delay: 0.19s;
+      }
+      .mobile-menu.open .nav-link:nth-child(5) {
+        transition-delay: 0.24s;
+      }
+
+      /* MAIN */
+      .main {
+        margin-left: 320px;
+        flex: 1;
+        padding: 0 70px 100px;
+      }
+      .section {
+        min-height: 100vh;
+        padding: 0 0 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section-title {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 2.4rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text);
+        transition: color 0.4s;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 36px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: background 0.4s;
+      }
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--border);
+        margin: 28px 0 44px;
+        transition: background 0.4s;
+      }
+
+      /* À PROPOS */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.85;
+        color: var(--body);
+        font-weight: 300;
+        margin-bottom: 14px;
+        transition: color 0.4s;
+      }
+      .about-info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .info-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 13px 16px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        transition:
+          background 0.3s,
+          border-color 0.4s;
+      }
+      .info-row:hover {
+        background: var(--card-hover);
+      }
+      .info-label {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        min-width: 90px;
+        transition: color 0.4s;
+      }
+      .info-value {
+        font-size: 0.9rem;
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.4s;
+      }
+
+      /* TIMELINE */
+      .timeline {
+        position: relative;
+        padding-left: 28px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        bottom: 0;
+        width: 1px;
+        background: var(--border);
+        transition: background 0.4s;
+      }
+      .tl-item {
+        position: relative;
+        margin-bottom: 42px;
+        padding-left: 24px;
+      }
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: -32px;
+        top: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--text);
+        box-shadow: 0 0 0 3px var(--bg);
+        transition:
+          background 0.4s,
+          box-shadow 0.4s;
+      }
+      .tl-date {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 5px;
+        transition: color 0.4s;
+      }
+      .tl-title {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text);
+        margin-bottom: 3px;
+        transition: color 0.4s;
+      }
+      .tl-sub {
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-style: italic;
+        margin-bottom: 9px;
+        transition: color 0.4s;
+      }
+      .tl-desc {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        color: var(--body);
+        font-weight: 300;
+        transition: color 0.4s;
+      }
+
+      /* COMPÉTENCES */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .skill-group-title {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 22px;
+        transition: color 0.4s;
+      }
+      .skill-item {
+        margin-bottom: 20px;
+      }
+      .skill-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 7px;
+      }
+      .skill-name {
+        font-size: 0.88rem;
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.4s;
+      }
+      .skill-pct {
+        font-family: "Saira Extra Condensed", sans-serif;
+        font-size: 0.82rem;
+        color: var(--muted);
+        transition: color 0.4s;
+      }
+      .skill-bar {
+        height: 2px;
+        background: var(--bar);
+        border-radius: 2px;
+        overflow: hidden;
+        transition: background 0.4s;
+      }
+      .skill-fill {
+        height: 100%;
+        background: var(--text);
+        border-radius: 2px;
+        width: 0;
+        transition:
+          width 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+          background 0.4s;
+      }
+
+      /* INTÉRÊTS */
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .tag {
+        padding: 9px 18px;
+        background: var(--tag);
+        border: 1px solid var(--tag-border);
+        border-radius: 30px;
+        font-size: 0.83rem;
+        color: var(--text);
+        font-weight: 500;
+        cursor: default;
+        transition:
+          background 0.3s,
+          transform 0.3s,
+          color 0.4s,
+          border-color 0.4s;
+      }
+      .tag:hover {
+        background: var(--card-hover);
+        transform: translateY(-2px);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .sidebar {
+          display: none;
+        }
+        .mobile-bar {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          margin-top: 58px;
+          padding: 0 22px 80px;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* de la a */
+      .attend {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        z-index: 9998;
+      }
+      /* de la */
+    </style>
   </head>
   <body>
-    <div class="navbar-container">
-      <!-- nav ordi -->
-      <div class="nav-ordi">
-        <div class="picture"></div>
-        <div class="links"></div>
-      </div>
+    <!-- de la a -->
+    <div class="attend"><a href="../index.html">revenir en arriere</a></div>
+    <!-- de la -->
+    <!-- RIDEAU -->
+    <div class="curtain-left" id="curtainLeft"></div>
+    <div class="curtain-right" id="curtainRight"></div>
 
-      <!-- nav tel -->
-      <div class="nav-tel">
-        <div class="burger"></div>
+    <!-- SIDEBAR DESKTOP -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <img src="cv-site.png" alt="Photo de profil" class="pic" />
+        <div class="sidebar-name">
+          <h1>Votre Nom</h1>
+          <p>Développeur Web</p>
+        </div>
+        <nav class="nav-links">
+          <a class="nav-link" href="#apropos">À Propos</a>
+          <a class="nav-link" href="#formation">Formation</a>
+          <a class="nav-link" href="#experiences">Expériences</a>
+          <a class="nav-link" href="#competences">Compétences</a>
+          <a class="nav-link" href="#interets">Intérêts</a>
+        </nav>
       </div>
-      <!-- fin all nav -->
+      <div class="sidebar-bottom">
+        <button class="btn-theme" id="btnTheme">Mode sombre</button>
+        <a href="../index.html" class="btn-back">Revenir au Portfolio</a>
+      </div>
+    </aside>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-bar">
+      <div class="mobile-top">
+        <span class="mobile-name">Votre Nom</span>
+        <div class="burger" id="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+          <a class="nav-link" href="#apropos">À Propos</a>
+          <a class="nav-link" href="#formation">Formation</a>
+          <a class="nav-link" href="#experiences">Expériences</a>
+          <a class="nav-link" href="#competences">Compétences</a>
+          <a class="nav-link" href="#interets">Intérêts</a>
+        </div>
+      </div>
     </div>
+
+    <!-- CONTENU -->
+    <main class="main">
+      <section class="section" id="apropos">
+        <h2 class="section-title">À Propos</h2>
+        <div class="divider"></div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              Développeur web passionné, je conçois des interfaces soignées et
+              des applications performantes. Curieux et rigoureux, j'aime
+              résoudre des problèmes complexes avec des solutions élégantes.
+            </p>
+            <p>
+              Je travaille aussi bien en autonomie qu'en équipe, avec une
+              attention particulière portée à la qualité du code et à
+              l'expérience utilisateur.
+            </p>
+          </div>
+          <div class="about-info">
+            <div class="info-row">
+              <span class="info-label">Naissance</span>
+              <span class="info-value">01 Janvier 2000</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Localisation</span>
+              <span class="info-value">Paris, France</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email</span>
+              <span class="info-value">votre@email.com</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Disponibilité</span>
+              <span class="info-value">Disponible immédiatement</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="formation">
+        <h2 class="section-title">Formation</h2>
+        <div class="divider"></div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2022 — 2024</div>
+            <div class="tl-title">Titre Pro Développeur Web</div>
+            <div class="tl-sub">Nom de l'école — Ville</div>
+            <p class="tl-desc">
+              Formation intensive couvrant HTML, CSS, JavaScript, React, Node.js
+              et bases de données relationnelles.
+            </p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2019 — 2022</div>
+            <div class="tl-title">Baccalauréat Général</div>
+            <div class="tl-sub">Lycée — Ville</div>
+            <p class="tl-desc">
+              Spécialité Mathématiques et Numérique. Mention Bien.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experiences">
+        <h2 class="section-title">Expériences</h2>
+        <div class="divider"></div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">Juin 2024 — Août 2024</div>
+            <div class="tl-title">Développeur Front-End — Stage</div>
+            <div class="tl-sub">Nom de l'entreprise — Ville</div>
+            <p class="tl-desc">
+              Développement de composants React, intégration d'une API REST,
+              collaboration en méthode Agile avec l'équipe produit.
+            </p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Janvier 2024 — Mai 2024</div>
+            <div class="tl-title">Projet Personnel — Portfolio</div>
+            <div class="tl-sub">Freelance</div>
+            <p class="tl-desc">
+              Conception et développement d'un portfolio interactif avec
+              animations CSS et thème clair/sombre.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="competences">
+        <h2 class="section-title">Compétences</h2>
+        <div class="divider"></div>
+        <div class="skills-grid">
+          <div>
+            <p class="skill-group-title">Front-End</p>
+            <div class="skill-item">
+              <div class="skill-row">
+                <span class="skill-name">HTML / CSS</span
+                ><span class="skill-pct">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-w="90"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row">
+                <span class="skill-name">JavaScript</span
+                ><span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-w="80"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row">
+                <span class="skill-name">React</span
+                ><span class="skill-pct">70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-w="70"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="skill-group-title">Back-End & Outils</p>
+            <div class="skill-item">
+              <div class="skill-row">
+                <span class="skill-name">Node.js</span
+                ><span class="skill-pct">65%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-w="65"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row">
+                <span class="skill-name">SQL</span
+                ><span class="skill-pct">60%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-w="60"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row">
+                <span class="skill-name">Git / GitHub</span
+                ><span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill" data-w="85"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="interets">
+        <h2 class="section-title">Intérêts</h2>
+        <div class="divider"></div>
+        <div class="tags">
+          <span class="tag">Design UI/UX</span>
+          <span class="tag">Open Source</span>
+          <span class="tag">Architecture logicielle</span>
+          <span class="tag">Photographie</span>
+          <span class="tag">Musique</span>
+          <span class="tag">Jeux vidéo</span>
+          <span class="tag">Lecture</span>
+          <span class="tag">Sport</span>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Rideau
+      const curtainLeft = document.getElementById("curtainLeft");
+      const curtainRight = document.getElementById("curtainRight");
+      setTimeout(function () {
+        curtainLeft.classList.add("open");
+        curtainRight.classList.add("open");
+      }, 300);
+
+      // Theme
+      const html = document.documentElement;
+      const btnTheme = document.getElementById("btnTheme");
+      btnTheme.addEventListener("click", function () {
+        const dark = html.getAttribute("data-theme") === "dark";
+        html.setAttribute("data-theme", dark ? "light" : "dark");
+        btnTheme.textContent = dark ? "Mode sombre" : "Mode clair";
+      });
+
+      // Burger
+      const burger = document.getElementById("burger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      burger.addEventListener("click", function () {
+        burger.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
+      });
+      mobileMenu.querySelectorAll(".nav-link").forEach(function (link) {
+        link.addEventListener("click", function () {
+          burger.classList.remove("open");
+          mobileMenu.classList.remove("open");
+        });
+      });
+
+      // Scroll reveal + barres
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              entry.target
+                .querySelectorAll(".skill-fill")
+                .forEach(function (bar) {
+                  bar.style.width = bar.dataset.w + "%";
+                });
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".section").forEach(function (s) {
+        observer.observe(s);
+      });
+      document.querySelector("#apropos").classList.add("visible");
+    </script>
   </body>
 </html>
