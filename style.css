@@ -287,6 +287,10 @@ h3 {
   letter-spacing: 0.01em;
 }
 
+h1 {
+  line-height: 80px;
+}
+
 /* Boutons */
 .btn {
   display: inline-flex;

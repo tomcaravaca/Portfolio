@@ -1,209 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Tom Caravaca</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <style>
-    .contact-wrap {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 60px 40px 100px;
-    }
-    @media (max-width: 680px) { .contact-wrap { padding: 40px 20px 80px; } }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Tom Caravaca</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+      .contact-wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 60px 40px 0;
+      }
+      @media (max-width: 680px) {
+        .contact-wrap {
+          padding: 40px 20px 80px;
+        }
+      }
 
-    .contact-wrap h1 {
-      font-size: clamp(2.8rem, 7vw, 4.5rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .contact-lead { color: var(--muted); margin-bottom: 44px; font-size: 0.94rem; max-width: 380px; }
+      .contact-wrap h1 {
+        font-size: clamp(2.8rem, 7vw, 4.5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .contact-lead {
+        color: var(--muted);
+        margin-bottom: 44px;
+        font-size: 0.94rem;
+        max-width: 380px;
+      }
 
-    .contact-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 44px; }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 20px;
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.15s;
-    }
-    .contact-link:hover { transform: translateX(3px); }
-    .cl-icon {
-      width: 36px; height: 36px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .cl-label { font-size: 0.74rem; color: var(--muted); margin-bottom: 1px; }
-    .cl-value { font-size: 0.9rem; font-weight: 500; }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 44px;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        text-decoration: none;
+        color: var(--text);
+        transition: transform 0.15s;
+      }
+      .contact-link:hover {
+        transform: translateX(3px);
+      }
+      .cl-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .cl-label {
+        font-size: 0.74rem;
+        color: var(--muted);
+        margin-bottom: 1px;
+      }
+      .cl-value {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
 
-    .form-card { padding: 28px; }
-    .form-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .form-group { margin-bottom: 16px; }
-    label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }
-    input, textarea {
-      width: 100%;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px 14px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.15s;
-      resize: vertical;
-    }
-    input:focus, textarea:focus { border-color: var(--accent); }
-    textarea { min-height: 120px; }
-    .btn-send { width: 100%; justify-content: center; margin-top: 6px; font-size: 0.95rem; }
-    .btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
-    .form-msg { margin-top: 12px; font-size: 0.87rem; text-align: center; display: none; }
-    .form-msg.success { color: #4ade80; display: block; }
-    .form-msg.error { color: #f87171; display: block; }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo">&lt;Tom<span>.</span>Code /&gt;</a>
-  <ul class="nav-links">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="projets.html">Projets</a></li>
-    <li><a href="apropos.html">À propos</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="theme-toggle" id="theme-toggle" title="Changer le thème"></button>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="index.html">Accueil</a>
-  <a href="projets.html">Projets</a>
-  <a href="apropos.html">À propos</a>
-  <a href="contact.html" class="active">Contact</a>
-</div>
-
-<div class="page">
-  <div class="contact-wrap">
-
-    <p class="section-title">Contact</p>
-    <h1>Travaillons ensemble</h1>
-    <p class="contact-lead">Disponible en alternance à partir de septembre 2025. N'hésite pas à me contacter directement.</p>
-
-    <div class="contact-links">
-      <a href="mailto:TON_EMAIL_ICI" class="card contact-link fade-up">
-        <div class="cl-icon">✉</div>
-        <div>
-          <div class="cl-label">Email</div>
-          <div class="cl-value">TON_EMAIL_ICI</div>
-        </div>
-      </a>
-      <a href="https://github.com/tomcaravaca" target="_blank" class="card contact-link fade-up" style="transition-delay:.08s">
-        <div class="cl-icon">⌥</div>
-        <div>
-          <div class="cl-label">GitHub</div>
-          <div class="cl-value">github.com/tomcaravaca</div>
-        </div>
-      </a>
+      .form-card {
+        padding: 28px;
+        margin-bottom: 50px;
+      }
+      .form-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 16px;
+      }
+      label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--muted);
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+      input,
+      textarea {
+        width: 100%;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 11px 14px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.15s;
+        resize: vertical;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--accent);
+      }
+      textarea {
+        min-height: 120px;
+      }
+      .btn-send {
+        width: 100%;
+        justify-content: center;
+        margin-top: 6px;
+        font-size: 0.95rem;
+      }
+      .btn-send:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .form-msg {
+        margin-top: 12px;
+        font-size: 0.87rem;
+        text-align: center;
+        display: none;
+      }
+      .form-msg.success {
+        color: #4ade80;
+        display: block;
+      }
+      .form-msg.error {
+        color: #f87171;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">&lt;Tom<span>.</span>Code /&gt;</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="apropos.html">À propos</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          title="Changer le thème"
+        ></button>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apropos.html">À propos</a>
+      <a href="contact.html" class="active">Contact</a>
     </div>
 
-    <div class="card form-card fade-up" style="transition-delay:.12s">
-      <p class="form-title">Envoyer un message</p>
-      <div class="form-group">
-        <label for="name">Nom</label>
-        <input type="text" id="name" name="from_name" placeholder="Votre nom" />
+    <div class="page">
+      <div class="contact-wrap">
+        <p class="section-title">Contact</p>
+        <h1>Travaillons ensemble</h1>
+        <p class="contact-lead">
+          Disponible en alternance à partir de septembre 2025. N'hésite pas à me
+          contacter directement.
+        </p>
+
+        <div class="card form-card fade-up" style="transition-delay: 0.12s">
+          <p class="form-title">Envoyer un message</p>
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input
+              type="text"
+              id="name"
+              name="from_name"
+              placeholder="Votre nom"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="from_email"
+              placeholder="votre@email.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="objet">Objet</label>
+            <input
+              type="text"
+              id="objet"
+              name="subject"
+              placeholder="Alternance, question..."
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Votre message..."
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-primary btn-send btn-arrow"
+            id="btn-send"
+            onclick="sendEmail()"
+          >
+            Envoyer
+          </button>
+          <p class="form-msg" id="form-msg"></p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:tomcaravaca24340@gmail.com" class="card contact-link fade-up">
+            <div>
+              <div class="cl-label">Email</div>
+              <div class="cl-value">tomcaravaca24340@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+33631521123" class="card contact-link fade-up">
+            <div>
+              <div class="cl-label">Téléphone</div>
+              <div class="cl-value">06 31 52 11 23</div>
+            </div>
+          </a>
+          
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="from_email" placeholder="votre@email.com" />
-      </div>
-      <div class="form-group">
-        <label for="objet">Objet</label>
-        <input type="text" id="objet" name="subject" placeholder="Alternance, question..." />
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Votre message..."></textarea>
-      </div>
-      <button class="btn btn-primary btn-send btn-arrow" id="btn-send" onclick="sendEmail()">Envoyer </button>
-      <p class="form-msg" id="form-msg"></p>
     </div>
 
-  </div>
-</div>
+    <footer>
+      <span>© 2025 Tom Caravaca</span>
+      <span
+        ><a href="https://github.com/tomcaravaca" target="_blank">GitHub</a> ·
+        <a href="contact.html">Contact</a></span
+      >
+    </footer>
 
-<footer>
-  <span>© 2025 Tom Caravaca</span>
-  <span><a href="https://github.com/tomcaravaca" target="_blank">GitHub</a> · <a href="contact.html">Contact</a></span>
-</footer>
+    <script src="nav.js"></script>
+    <script>
+      const EMAILJS_PUBLIC_KEY = "2_WShCu2Gy47UVrfC";
+      const EMAILJS_SERVICE_ID = "service_c6u16xf";
+      const EMAILJS_TEMPLATE_ID = "template_c7yqxv4";
 
-<script src="nav.js"></script>
-<script>
-  const EMAILJS_PUBLIC_KEY  = "2_WShCu2Gy47UVrfC";
-  const EMAILJS_SERVICE_ID  = "service_c6u16xf";
-  const EMAILJS_TEMPLATE_ID = "template_c7yqxv4";
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      function sendEmail() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const objet = document.getElementById("objet").value.trim();
+        const message = document.getElementById("message").value.trim();
+        const btn = document.getElementById("btn-send");
+        const msg = document.getElementById("form-msg");
 
-  function sendEmail() {
-    const name    = document.getElementById('name').value.trim();
-    const email   = document.getElementById('email').value.trim();
-    const objet   = document.getElementById('objet').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const btn     = document.getElementById('btn-send');
-    const msg     = document.getElementById('form-msg');
+        if (!name || !email || !message) {
+          msg.textContent = "Remplis au moins le nom, l'email et le message.";
+          msg.className = "form-msg error";
+          return;
+        }
 
-    if (!name || !email || !message) {
-      msg.textContent = "Remplis au moins le nom, l'email et le message.";
-      msg.className = 'form-msg error';
-      return;
-    }
+        btn.disabled = true;
+        btn.textContent = "Envoi...";
+        msg.className = "form-msg";
 
-    btn.disabled = true;
-    btn.textContent = 'Envoi...';
-    msg.className = 'form-msg';
-
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      from_name: name, from_email: email,
-      subject: objet || 'Message depuis le portfolio',
-      message: message
-    }).then(() => {
-      msg.textContent = 'Message envoyé, je te réponds vite !';
-      msg.className = 'form-msg success';
-      btn.textContent = 'Envoyé ✓';
-      ['name','email','objet','message'].forEach(id => document.getElementById(id).value = '');
-    }).catch(() => {
-      msg.textContent = "Une erreur s'est produite, écris-moi directement par email.";
-      msg.className = 'form-msg error';
-      btn.disabled = false;
-      btn.textContent = 'Envoyer →';
-    });
-  }
-</script>
-</body>
+        emailjs
+          .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            from_name: name,
+            from_email: email,
+            subject: objet || "Message depuis le portfolio",
+            message: message,
+          })
+          .then(() => {
+            msg.textContent = "Message envoyé, je te réponds vite !";
+            msg.className = "form-msg success";
+            btn.textContent = "Envoyé ✓";
+            ["name", "email", "objet", "message"].forEach(
+              (id) => (document.getElementById(id).value = ""),
+            );
+          })
+          .catch(() => {
+            msg.textContent =
+              "Une erreur s'est produite, écris-moi directement par email.";
+            msg.className = "form-msg error";
+            btn.disabled = false;
+            btn.textContent = "Envoyer →";
+          });
+      }
+    </script>
+  </body>
 </html>
