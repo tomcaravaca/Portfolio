@@ -167,21 +167,14 @@ nav {
 
 /* Burger */
 .burger {
-  display: none;
+  display: none; /* caché par défaut sur desktop */
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
   padding: 8px;
-  border: 1px solid var(--border);
+  border: none;
   background: transparent;
   border-radius: 10px;
-  transition:
-    background 0.15s,
-    border-color 0.15s;
-}
-.burger:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
 }
 .burger span {
   display: block;
@@ -195,14 +188,10 @@ nav {
   transform-origin: center;
 }
 .burger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(4px) rotate(45deg);
 }
 .burger.open span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-.burger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-4px) rotate(-45deg);
 }
 
 /* Mobile menu */
@@ -270,6 +259,34 @@ nav {
 }
 .mobile-menu a.active {
   color: var(--accent);
+}
+
+/* Overlay flou quand menu ouvert */
+body.menu-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  min-height: 100vh;
+  z-index: 998; /* juste en dessous du menu (999) */
+  pointer-events: all;
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+body.menu-open .menu-overlay {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* Page */
@@ -343,6 +360,9 @@ h1 {
   border-color: rgba(124, 109, 250, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 10px 32px rgba(124, 109, 250, 0.1);
+}
+.about-card h3 {
+  font-size: 22px;
 }
 
 /* Tags */
