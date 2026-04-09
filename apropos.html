@@ -168,7 +168,7 @@
         text-align: center;
         padding: 0 20px;
       }
-      .sidebar-name h1 {
+      .sidebar-name-h1 {
         font-size: 1.8rem;
         font-weight: 700;
         letter-spacing: 1.5px;
@@ -176,13 +176,14 @@
         color: var(--text);
         transition: color 0.4s;
       }
-      .sidebar-name p {
+      .sidebar-name-p {
         font-size: 0.72rem;
         letter-spacing: 3px;
         text-transform: uppercase;
         color: var(--muted);
         margin-top: 5px;
         transition: color 0.4s;
+        margin-top: -16px;
       }
       .nav-links {
         display: flex;
@@ -420,6 +421,13 @@
         margin: 28px 0 44px;
         transition: background 0.4s;
       }
+      .divider2 {
+        width: 100%;
+        height: 1px;
+        background: var(--border);
+        margin: 28px 0 24px;
+        transition: background 0.4s;
+      }
 
       /* À PROPOS */
       .about-grid {
@@ -434,6 +442,9 @@
         font-weight: 300;
         margin-bottom: 14px;
         transition: color 0.4s;
+      }
+      .about-text p strong {
+        font-weight: 900;
       }
       .about-info {
         display: flex;
@@ -488,7 +499,7 @@
       }
       .tl-item {
         position: relative;
-        margin-bottom: 42px;
+        margin-bottom: 32px;
         padding-left: 24px;
       }
       .tl-item::before {
@@ -526,6 +537,13 @@
       .tl-sub {
         font-size: 0.82rem;
         color: var(--muted);
+        font-style: italic;
+        margin-bottom: 9px;
+        transition: color 0.4s;
+      }
+      .skill-h3 {
+        font-size: 0.82rem;
+        color: #a9a9a9;
         font-style: italic;
         margin-bottom: 9px;
         transition: color 0.4s;
@@ -595,6 +613,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        margin: 20px 0;
+        width: 100%;
       }
       .tag {
         padding: 9px 18px;
@@ -621,6 +641,17 @@
         body::before {
           left: -150px;
           top: -100px;
+        }
+
+        .btn-back {
+          position: fixed;
+          bottom: 24px;
+          right: 20px;
+          width: auto;
+          padding: 12px 20px;
+          z-index: 500;
+          background: #000;
+          border-radius: 12px;
         }
 
         .sidebar {
@@ -659,19 +690,18 @@
       <div class="sidebar-top">
         <img src="assets/pdp.png" alt="Photo de profil" class="pic" />
         <div class="sidebar-name">
-          <h1>Tom Caravaca</h1>
-          <p>Développeur Web</p>
+          <a class="sidebar-name-h1" href="index.html">Tom Caravaca</a>
         </div>
-        <nav class="nav-links">
-          <a class="nav-link" href="#apropos">À Propos</a>
-          <a class="nav-link" href="#formation">Formation</a>
-          <a class="nav-link" href="#experiences">Expériences</a>
-          <a class="nav-link" href="#competences">Compétences</a>
-          <a class="nav-link" href="#interets">Intérêts</a>
-        </nav>
+        <p class="sidebar-name-p">Développeur Web</p>
       </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="#apropos">À Propos</a>
+        <a class="nav-link" href="#formation">Formation</a>
+        <a class="nav-link" href="#experiences">Expériences</a>
+        <a class="nav-link" href="#competences">Compétences</a>
+        <a class="nav-link" href="#interets">Intérêts</a>
+      </nav>
       <div class="sidebar-bottom">
-        <button class="btn-theme" id="btnTheme">Mode sombre</button>
         <a href="index.html" class="btn-back">Revenir au Portfolio</a>
       </div>
     </aside>
@@ -679,7 +709,7 @@
     <!-- MOBILE NAV -->
     <div class="mobile-bar">
       <div class="mobile-top">
-        <span class="mobile-name">Tom Caravaca</span>
+        <a class="mobile-name" href="index.html">Tom Caravaca</a>
         <div class="burger" id="burger">
           <span></span>
           <span></span>
@@ -695,7 +725,6 @@
           <a class="nav-link" href="#interets">Intérêts</a>
           <span class="separator"></span>
           <a href="index.html" class="nav-link">Revenir au Portfolio</a>
-          
         </div>
       </div>
     </div>
@@ -709,28 +738,25 @@
         <div class="about-grid">
           <div class="about-text">
             <p>
-              Développeur web passionné, je conçois des interfaces soignées et
-              des applications performantes. Curieux et rigoureux, j'aime
-              résoudre des problèmes complexes avec des solutions élégantes.
+              Tombé dans le développement Web par hasard, désormais j'y consacre
+              tout mon temps et mon sérieux, je crée des interfaces propres et
+              des applications performantes. Curieux de tout, j'aime résoudre
+              des problèmes concrets avec des solutions simples.
             </p>
-            <p>
-              Je travaille aussi bien en autonomie qu'en équipe, avec une
-              attention particulière portée à la qualité du code et à
-              l'expérience utilisateur.
-            </p>
+            <p>Je travaille aussi bien en autonomie qu'en équipe.</p>
           </div>
           <div class="about-info">
             <div class="info-row">
               <span class="info-label">Naissance</span>
-              <span class="info-value">01 Janvier 2000</span>
+              <span class="info-value">26 Juillet 2008</span>
             </div>
             <div class="info-row">
               <span class="info-label">Localisation</span>
-              <span class="info-value">Paris, France</span>
+              <span class="info-value">24300 Nontron, France</span>
             </div>
             <div class="info-row">
               <span class="info-label">Email</span>
-              <span class="info-value">votre@email.com</span>
+              <span class="info-value">tomcaravaca24340@gmail.com</span>
             </div>
           </div>
         </div>
@@ -742,7 +768,7 @@
         <div class="timeline">
           <div class="tl-item">
             <div class="tl-date">2023 - 2026</div>
-            <div class="tl-title">Baccalauréat Professionnel ( en cours)</div>
+            <div class="tl-title">Baccalauréat Professionnel (en cours)</div>
             <div class="tl-sub">
               Lycée Pierre André Chabanne - Chasseuneuil sur Bonnieure
             </div>
@@ -756,24 +782,44 @@
 
       <section class="section" id="experiences">
         <h2 class="section-title">Expériences</h2>
-        <div class="divider"></div>
+        <div class="divider2"></div>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-date">Juin 2024 — Août 2024</div>
-            <div class="tl-title">Développeur Front-End — Stage</div>
-            <div class="tl-sub">Nom de l'entreprise — Ville</div>
+            <div class="tl-date">2026 - ....</div>
+            <div class="tl-title">Création de mon Portfolio</div>
+            <div class="tl-sub">Projet Personnel</div>
             <p class="tl-desc">
-              Développement de composants React, intégration d'une API REST,
-              collaboration en méthode Agile avec l'équipe produit.
+              Conception et développement d'un portfolio interactif en HTML, CSS
+              et JavaScript.
             </p>
           </div>
           <div class="tl-item">
-            <div class="tl-date">Janvier 2024 — Mai 2024</div>
-            <div class="tl-title">Projet Personnel — Portfolio</div>
-            <div class="tl-sub">Freelance</div>
+            <div class="tl-date">2025 - 2026</div>
+            <div class="tl-title">Stage - Informatique</div>
+            <div class="tl-sub">Médiaconcept - La Rochefoucault</div>
             <p class="tl-desc">
-              Conception et développement d'un portfolio interactif avec
-              animations CSS et thème clair/sombre.
+              Stage de 6 semaines en tant que réparateur informatique dans
+              l’entreprise “Médiaconcept” à La Rochefoucault. C'est notamment là
+              que j'ai commencé à plonger dans le développement web en créant le
+              site de centralisation des NAS.
+            </p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2024 — 2025</div>
+            <div class="tl-title">Stage - Support Informatique</div>
+            <div class="tl-sub">Gématique - Périgueux</div>
+            <p class="tl-desc">
+              Stage de 4 semaines en tant que support informatique dans
+              l’entreprise “Gématique” à Périgueux.
+            </p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2023 - 2024</div>
+            <div class="tl-title">Stage - Réparateur Informatique</div>
+            <div class="tl-sub">Interface - Périgueux</div>
+            <p class="tl-desc">
+              Stage de 6 semaines en tant que réparateur informatique dans
+              l’entreprise “Interface” à Périgueux.
             </p>
           </div>
         </div>
@@ -782,82 +828,31 @@
       <section class="section" id="competences">
         <h2 class="section-title">Compétences</h2>
         <div class="divider"></div>
-        <div class="skills-grid">
-          <div>
-            <p class="skill-group-title">Front-End</p>
-            <div class="skill-item">
-              <div class="skill-row">
-                <span class="skill-name">HTML / CSS</span
-                ><span class="skill-pct">90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-w="90"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-row">
-                <span class="skill-name">JavaScript</span
-                ><span class="skill-pct">80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-w="80"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-row">
-                <span class="skill-name">React</span
-                ><span class="skill-pct">70%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-w="70"></div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p class="skill-group-title">Back-End & Outils</p>
-            <div class="skill-item">
-              <div class="skill-row">
-                <span class="skill-name">Node.js</span
-                ><span class="skill-pct">65%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-w="65"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-row">
-                <span class="skill-name">SQL</span
-                ><span class="skill-pct">60%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-w="60"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-row">
-                <span class="skill-name">Git / GitHub</span
-                ><span class="skill-pct">85%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-fill" data-w="85"></div>
-              </div>
-            </div>
-          </div>
+        <h3 class="skill-h3">Front-End</h3>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <div class="divider"></div>
+        <h3 class="skill-h3">Back-End & Outils</h3>
+        <div class="tags">
+          <span class="tag">OVH</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Cloudflare</span>
         </div>
       </section>
 
       <section class="section" id="interets">
         <h2 class="section-title">Intérêts</h2>
         <div class="divider"></div>
-        <div class="tags">
-          <span class="tag">Design UI/UX</span>
-          <span class="tag">Open Source</span>
-          <span class="tag">Architecture logicielle</span>
-          <span class="tag">Photographie</span>
-          <span class="tag">Musique</span>
-          <span class="tag">Jeux vidéo</span>
-          <span class="tag">Lecture</span>
-          <span class="tag">Sport</span>
+        <div class="about-text">
+          <p>
+            J'adore entreprendre les choses et je cherche toujours à apprendre.
+            <strong>Je vis en musique</strong> et je joue à Minecraft ; )
+          </p>
         </div>
       </section>
     </main>
